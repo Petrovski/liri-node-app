@@ -3,41 +3,42 @@ require("dotenv").config();
 const keys = require("./keys.js");
 const request = require("request");
 const Spotify = require('node-spotify-api');
-const fs = require("fs")
+const fs = require("fs");
+const moment = require("moment")
 
 var input = process.argv;
-
 var liriInput = input[2];
 
 
+// Create inputs for the required inputs for this app. Explain the required inputs in the GitHub ReadME
 if (liriInput === "concert-this") {
-    getConcertInfo();
+    concertInfo();
     console.log("concert-this");
 }
 
 if (liriInput === "spotify-this-song") {
-    getSongInfo();
+    songInfo();
     console.log("spotify-this-song");
 }
 
 if (liriInput === "movie-this") {
-    getMovieInfo();
+    movieInfo();
     console.log("movie-this");
 }
 
 if (liriInput === "do-what-it-says") {
+    doWhatItSays();
     console.log("do-what-it-says");
 }
 
 
-function getSongInfo(song) {
+function songInfo(song) {
  
     for (var i = 3; i < input.length; i++) {
         song = song + " " + input[i];
     }
 
     var spotify = new Spotify(keys.spotify);
-
 
     if (!song) {
         song = "The Sign";
@@ -75,13 +76,13 @@ function getSongInfo(song) {
 
                 var songResults =
 
-                    "==========================================================================" + "\r\n" +
-                    "Song #" + (i + 1) + "\r\n" +
-                    "Artist: " + trackInfo.artists[0].name + "\r\n" +
-                    "Song title: " + trackInfo.name + "\r\n" +
-                    "Preview song: " + previewSong + "\r\n" +
-                    "Album: " + trackInfo.album.name + "\r\n" +
-                    "==========================================================================";
+                    "--------------------------------------------------------------------------" + "\n" +
+                    "Song #" + (i + 1) + "\n" +
+                    "Artist: " + trackInfo.artists[0].name + "\n" +
+                    "Song title: " + trackInfo.name + "\n" +
+                    "Preview song: " + previewSong + "\n" +
+                    "Album: " + trackInfo.album.name + "\n" +
+                    "--------------------------------------------------------------------------";
 
                 //This will display the song info in the terminal for the user
                 console.log(songResults);
@@ -91,12 +92,11 @@ function getSongInfo(song) {
 }
 
 
-function getMovieInfo() {
+function movieInfo() {
 
-    var movieName = input[3];
+    var movieName = "";
 
     for (var i = 3; i < input.length; i++) {
-
         if (i > 2 && i < input.length) {
             movieName = movieName + " " + input[i];
         }
@@ -120,6 +120,7 @@ function getMovieInfo() {
 
             var movieResult =
 
+                "--------------------------------------------------------------------------" + "\n" +
                 "Title: " + movieInfo.Title + "\n" +
                 "Year movie was released: " + movieInfo.Year + "\n" +
                 "IMDB movie rating (out of 10): " + movieInfo.imdbRating + "\n" +
@@ -127,7 +128,7 @@ function getMovieInfo() {
                 "Language: " + movieInfo.Language + "\n" +
                 "Plot: " + movieInfo.Plot + "\n" +
                 "Actors: " + movieInfo.Actors + "\n" +
-                "======================================================================================================="
+                "--------------------------------------------------------------------------"
 
             //Output the movie information from above to the terminal for the user to see
             console.log(movieResult);
@@ -136,9 +137,43 @@ function getMovieInfo() {
 }
 
 
-function getConcertInfo() {
+function concertInfo() {
 
     var artist = input[3];
 
-    console.log(request("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp"));
+    // 3. It provides the actual body text from the website <---- what actually matters.
+    request("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp", function (error, response, body) {
+
+        // If the request was successful...
+        if (!error && response.statusCode === 200) {
+
+            var concerts = JSON.parse(body);
+            var concertDate = concerts[0].datetime;
+            var momentDate = moment(concertDate).format("MM/DD/YYYY");
+
+            var concertResult = 
+
+            "--------------------------------------------------------------------------" + "\n" +
+            "Venue: " + concerts[0].venue.name + "\n" +
+            "Location: " + concerts[0].venue.city + "\n" +
+            "Date: " + momentDate + "\n" +
+            "--------------------------------------------------------------------------"
+
+            console.log(concertResult);
+        }
+    });
+}
+
+
+function doWhatItSays() {
+
+    fs.readFile("random.txt", "utf8", function(error, data){
+        
+        if (error) {
+            console.log(error);
+        }
+
+        var songArray = data.split(",")
+        songInfo(songArray[1]);
+    });
 }
