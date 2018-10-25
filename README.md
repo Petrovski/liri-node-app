@@ -24,7 +24,7 @@ This command will allow you to search a perticular movie that you want to know m
 
 Here is an exmaple of it in practice:
 
-<_insert screenshot here_>
+[Imgur](http://i.imgur.com/jG0YYGG.png)
 
 ### 2. node liri.js spotify-this-song <_insert song name here_>
 
