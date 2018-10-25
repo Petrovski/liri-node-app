@@ -22,6 +22,10 @@ This command will allow you to search a perticular movie that you want to know m
 * Plot
 * Actors
 
+Here is an exmaple of it in practice:
+
+<_insert screenshot here_>
+
 ### 2. node liri.js spotify-this-song <_insert song name here_>
 
 This command will allow you to search for a particular name of a song, or word in a song, and it will output the **top 10** songs with the word(s) you used for the search. It will then seperate each song in a list type format from song #1-10 (if it can find 10) and output each of the following in the list:
@@ -31,4 +35,18 @@ This command will allow you to search for a particular name of a song, or word i
 * Preview song (this will be a url to click on)
 * Album
 
+Here is an exmaple of it in practice:
+
+<_insert screenshot here_>
+
 ### 3. node liri.js concert-this <_insert artist name here_>
+
+
+
+
+
+
+
+Here is an exmaple of it in practice:
+
+<_insert screenshot here_>
