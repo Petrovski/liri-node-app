@@ -34,7 +34,7 @@ if (liriInput === "do-what-it-says") {
 
 function songInfo(song) {
  
-    for (var i = 3; i < input.length; i++) {
+    for (let i = 3; i < input.length; i++) {
         song = song + " " + input[i];
     }
 
@@ -63,9 +63,9 @@ function songInfo(song) {
             console.log(defaultSong);
         } else {
 
-            console.log("Top 10 songs on Spotify with the name, " + song);
+            console.log("Top 10 songs on Spotify: " + song);
             
-            for (var i = 0; i < data.tracks.items.length; i++) {
+            for (let i = 0; i < data.tracks.items.length; i++) {
                 var trackInfo = data.tracks.items[i];
 
                 var previewSong = trackInfo.preview_url;
@@ -96,7 +96,7 @@ function movieInfo() {
 
     var movieName = "";
 
-    for (var i = 3; i < input.length; i++) {
+    for (let i = 3; i < input.length; i++) {
         if (i > 2 && i < input.length) {
             movieName = movieName + " " + input[i];
         }
