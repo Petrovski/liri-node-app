@@ -22,7 +22,7 @@ This command will allow you to search a perticular movie that you want to know m
 * Plot
 * Actors
 
-Here is an exmaple of it in practice:
+Here is an example of it in practice:
 
 [Imgur](http://i.imgur.com/jG0YYGG.png)
 
@@ -35,18 +35,26 @@ This command will allow you to search for a particular name of a song, or word i
 * Preview song (this will be a url to click on)
 * Album
 
-Here is an exmaple of it in practice:
+Here is an example of it in practice:
 
-<_insert screenshot here_>
+[Imgur](https://i.imgur.com/SvHj4cL.png)
 
 ### 3. node liri.js concert-this <_insert artist name here_>
 
+This command will allow you to search for a particular music artists of your choice, and it will show their next upcoming concert. It will show the following in the terminal to the user:
 
+* Name of the venue
+* Location of the venue (by city)
+* Date of the concert
 
+Here is an example of it in practice:
 
+[Imgur](https://i.imgur.com/G1nDJYt.png)
 
+### 4. node liri.js do-what-it-says
 
+This command will allow you use the fs node package to pull the text from the random.txt file. It's current and base status has it set to spotify-this-song "I Want It That Way", and 10 songs are printed to the terminal.
 
-Here is an exmaple of it in practice:
+Here is an example of it in practice:
 
-<_insert screenshot here_>
+[Imgur](https://i.imgur.com/kVMjeGP.png)
