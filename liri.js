@@ -87,6 +87,11 @@ function songInfo(song) {
                 //This will display the song info in the terminal for the user
                 console.log(songResults);
             }
+
+            fs.appendFile("log.txt", songResults, function (err) {
+                if (err) throw err;
+                console.log("log.txt was updated with your song search!");
+            });
         }
     });
 }
@@ -132,6 +137,11 @@ function movieInfo() {
 
             //Output the movie information from above to the terminal for the user to see
             console.log(movieResult);
+
+            fs.appendFile("log.txt", movieResult, function (err) {
+                if (err) throw err;
+                console.log("log.txt was updated with your movie search!");
+            });
         }
     });
 }
@@ -160,6 +170,11 @@ function concertInfo() {
             "--------------------------------------------------------------------------"
 
             console.log(concertResult);
+
+            fs.appendFile("log.txt", concertResult, function (err) {
+                if (err) throw err;
+                console.log("log.txt was updated with your concert search!");
+            });
         }
     });
 }
